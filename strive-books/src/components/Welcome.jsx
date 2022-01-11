@@ -1,8 +1,8 @@
 import { Component } from "react";
 import { Jumbotron, Container } from "react-bootstrap";
 
-class Welcome extends Component {
-  render() {
+const Welcome  =()=> {
+  
     return (
       <Jumbotron fluid className="jumbotron">
         <Container>
@@ -15,7 +15,7 @@ class Welcome extends Component {
         </Container>
       </Jumbotron>
     );
-  }
+  
 }
 
 export default Welcome;

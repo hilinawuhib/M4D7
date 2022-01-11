@@ -1,16 +1,16 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 
-class SingleBook extends React.Component {
-  render() {
+const SingleBook=()=> {
+  
     return (
       <>
         <Card
           className="singlebook"
-          onClick={() => this.props.changeBook(this.props.book.asin)}
+          onClick={() =>changeBook(book.asin)}
           style={{
             border:
-              this.props.selectedBook === this.props.book.asin
+             selectedBook === book.asin
                 ? "1px solid green"
                 : "none",
           }}
@@ -18,19 +18,19 @@ class SingleBook extends React.Component {
           <Card.Img
             className="singleimage"
             variant="top"
-            src={this.props.book.img}
+            src={book.img}
           />
           <Card.Body>
             <Card.Title style={{ color: "black" }}>
-              {this.props.book.title}
+              {book.title}
             </Card.Title>
-            <h6>{this.props.book.category}</h6>
-            <h6>{this.props.book.price}$</h6>
+            <h6>{book.category}</h6>
+            <h6>{book.price}$</h6>
           </Card.Body>
         </Card>
       </>
     );
-  }
+  
 }
 
 export default SingleBook;

@@ -3,13 +3,17 @@ import SingleBook from "./SingleBook";
 import { Col, Container, Form, Row } from "react-bootstrap";
 import CommentArea from "./CommentArea";
 
-class BookList extends React.Component {
-  state = {
-    search: "",
-    selectedBook: null,
-  };
 
-  render() {
+// class BookList extends React.Component {
+  const BookList = ({ books }) => {
+    // state = {
+      //   search: "",
+  //   selectedBook: null,
+  // };
+  
+  const [search, setSearch] = useState('')
+  const [selectedBook, setSelectedBook] = useState(null)
+ 
     return (
       <Container>
         <Row>
@@ -21,39 +25,35 @@ class BookList extends React.Component {
                   <Form.Control
                     type="text"
                     placeholder="Search"
-                    value={this.state.search}
-                    onChange={(e) => this.setState({ search: e.target.value })}
+                    value={search}
+                    onChange={e => setSearch(e.target.value)}
                   />
                 </Form.Group>
               </Col>
             </Row>
             <Row>
-              {this.props.books
+              {books
                 .filter((b) =>
-                  b.title.toLowerCase().includes(this.state.search)
+                  b.title.toLowerCase().includes(search)
                 )
                 .map((b) => (
                   <Col xs={3} key={b.asin}>
                     <SingleBook
                       book={b}
-                      selectedBook={this.state.selectedBook}
-                      changeBook={(asin) =>
-                        this.setState({
-                          selectedBook: asin,
-                        })
-                      }
-                    />
-                  </Col>
-                ))}
+                      selectedBook={selectedBook}
+                      changeSelectedBook={asin => setSelectedBook(asin)} />
+                        </Col>
+                            ))
+                        }
             </Row>
           </Col>
           <Col md={4}>
-            <CommentArea asin={this.state.selectedBook} />
+            <CommentArea asin={selectedBook} />
           </Col>
         </Row>
       </Container>
     );
-  }
+  
 }
 
 export default BookList;
